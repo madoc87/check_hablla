@@ -23,6 +23,9 @@ As seguintes variáveis são necessárias:
 * `MONGO_URI`: A string de conexão completa do seu banco de dados MongoDB.
 * `DB_NAME`: O nome específico do banco de dados onde os dados da campanha estão armazenados.
 * `PORT`: A porta em que o servidor será executado (o padrão é `3001`).
+* `HABLLA_WORKSPACE_ID`: O ID do workspace na API do Hablla.
+* `HABLLA_API_TOKEN`: O token de autorização para a API do Hablla.
+* `API_SECRET_TOKEN`: Token secreto para autenticação das rotas sensíveis da API.
 
 ## Estrutura da API
 
@@ -55,3 +58,32 @@ As seguintes variáveis são necessárias:
       "message": "O nome da campanha é obrigatório."
     }
     ```
+
+### Endpoints Protegidos (Requerem autenticação)
+
+* **`PUT /api/update-cards`**
+
+    Atualiza cartões na API do Hablla.
+
+    **Headers:**
+    * `Authorization`: `Bearer seu-token-secreto-aqui`
+
+* **`POST /api/manage-followers`**
+
+    Gerencia seguidores na API do Hablla.
+
+    **Headers:**
+    * `Authorization`: `Bearer seu-token-secreto-aqui`
+
+## Segurança
+
+A API implementa as seguintes medidas de segurança:
+
+* **Autenticação por token**: Endpoints sensíveis requerem um token de autorização no header.
+* **Helmet**: Configura cabeçalhos HTTP para proteção contra vulnerabilidades conhecidas.
+* **Rate Limiting**: Limita o número de requisições por IP para prevenir ataques de força bruta.
+* **MongoDB Sanitization**: Previne ataques de injeção NoSQL.
+* **XSS Protection**: Previne ataques de Cross-Site Scripting.
+* **Parameter Pollution Protection**: Previne ataques de poluição de parâmetros.
+* **Validação de entrada**: Todos os dados recebidos são validados e sanitizados.
+* **Tratamento de erros**: Erros internos não são expostos diretamente ao cliente.

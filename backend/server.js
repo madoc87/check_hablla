@@ -2,7 +2,7 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const cors = require('cors');
-const fetch = require('node-fetch'); // 'node-fetch' para chamadas de API no backend
+const { default: fetch } = require('node-fetch'); // 'node-fetch' para chamadas de API no backend
 require('dotenv').config();
 
 // Inicializa o aplicativo Express
@@ -12,6 +12,24 @@ const port = process.env.PORT || 3001;
 // Configurações do Middleware
 app.use(cors());
 app.use(express.json());
+
+// Middleware para verificar o token de segurança
+const SECRET_TOKEN = process.env.API_SECRET_TOKEN;
+
+function verifyToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+  if (!token) {
+    return res.status(401).json({ message: 'Token de acesso é necessário.' });
+  }
+
+  if (token !== SECRET_TOKEN) {
+    return res.status(403).json({ message: 'Token de acesso inválido.' });
+  }
+
+  next();
+}
 
 // --- Conexão com MongoDB ---
 const mongoUri = process.env.MONGO_URI;
@@ -174,7 +192,7 @@ const habllaApiToken = process.env.HABLLA_API_TOKEN;
 
 
 // Rota para atualização de cartões v3 (Status e Tags)
-app.put('/api/update-cards', async (req, res) => {
+app.put('/api/update-cards', verifyToken, async (req, res) => {
     const { method, cardIds, boardId, stageId, fieldsToUpdate, tagsOperation } = req.body;
 
     if (!method || (!fieldsToUpdate && !tagsOperation)) {
@@ -409,7 +427,7 @@ async function getCardDetails(cardId, headers) {
 
 
 // Rota principal para gerenciar seguidores
-app.post('/api/manage-followers', async (req, res) => {
+app.post('/api/manage-followers', verifyToken, async (req, res) => {
     const { searchUserId, userToRemoveId, userToAddId } = req.body;
 
     if (!searchUserId || !userToRemoveId || !userToAddId) {
