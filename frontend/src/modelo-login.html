@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Hablla Tools - Login</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+        --login-primary-color: #6c39e4;
+        --wave-1: #6e0c1d;
+        --wave-2: #38b4ee;
+        --wave-3: #c45dff;
+        --wave-4: #de2435;
+        --wave-5: #232259;
+        --wave-6: #323171;
+        --wave-7: #2d2c6c;
+
+        --select-button-svg: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(173,146,201)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e');
+      }
+      .waves {
+        position: absolute;
+        width: 100%;
+        height: 35vh;
+        min-height: 100px;
+        max-height: 350px;
+        bottom: 0;
+        left: 0;
+      }
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+      }
+
+      /* Estilo para o gradiente de opacidade na máscara */
+        .parallax > use {
+        -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 83%, rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 93%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        @keyframes move-forever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+        }
+
+
+
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+      @keyframes move-forever {
+        0% {
+         transform: translate3d(-90px,0,0);
+        }
+        100% {
+          transform: translate3d(85px,0,0);
+        }
+      }
+    </style>
+</head>
+
+<body class="bg-[#07000e] font-sans">
+    <div class="relative flex min-h-screen items-center justify-center overflow-hidden">
+        <div
+            class="z-10 w-full max-w-md rounded-lg bg-[#1F1D2B]/40 backdrop-blur-md p-8 shadow-2xl shadow-slate-950 border border-white/10">
+            <div class="text-center mb-8">
+                <h3 class="text-lg font-medium text-[var(--login-primary-color)] text-center ">Hablla</h3>
+                <h1 class="text-3xl font-bold text-white">
+                    Sync
+                    <span class="text-[var(--login-primary-color)]">
+                        &
+                    </span>
+                    Tools
+                </h1>
+
+            </div>
+            <form>
+                <div class="mb-6">
+                    <label class="sr-only" for="username">Nome de usuário</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#a9a7b4]">
+                            <!-- person -->
+                        </span>
+                        <input
+                            class="form-input w-full rounded-md border-none bg-white/5 py-3 pl-12 pr-4 text-white placeholder:text-[#dcdbe4] focus:outline-none focus:ring-2 focus:ring-[var(--login-primary-color)] focus:ring-opacity-50 leading-normal"
+                            id="username" placeholder="Nome de usuário" type="text" />
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <label class="sr-only" for="password">Senha</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#a9a7b4]">
+                            <!-- lock -->
+                        </span>
+                        <input
+                            class="form-input w-full rounded-md border-none bg-white/5 py-3 pl-12 pr-4 text-white placeholder:text-[#dcdbe4] focus:outline-none focus:ring-2 focus:ring-[var(--login-primary-color)] focus:ring-opacity-50 leading-normal"
+                            id="password" placeholder="Senha" type="password" />
+                    </div>
+                </div>
+                <button
+                    class="w-full rounded-md bg-[var(--login-primary-color)] py-3 text-base font-bold text-white transition-colors hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--login-primary-color)] focus:ring-opacity-50"
+                    type="submit">
+                    Entrar
+                </button>
+            </form>
+        </div>
+        <div class="waves">
+            <svg class="w-full h-full" preserveAspectRatio="none" shape-rendering="auto" viewBox="0 24 150 28"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <path d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" id="gentle-wave">
+                    </path>
+                </defs>
+                <g class="parallax">
+                    <!-- Red 1 -->
+                    <use fill="rgba(var(--wave-1-rgb), 0.7)" x="48" xlink:href="#gentle-wave" y="0"></use>
+                    <!-- Cyan -->
+                    <use fill="rgba(var(--wave-2-rgb), 0.7)" x="48" xlink:href="#gentle-wave" y="3"></use>
+                    <!-- Purple -->
+                    <use fill="rgba(var(--wave-3-rgb), 0.5)" x="48" xlink:href="#gentle-wave" y="5"></use>
+                    <!-- Red 2 -->
+                    <use fill="var(--wave-4)" x="48" xlink:href="#gentle-wave" y="7"></use>
+                    <!-- Blue 1 -->
+                    <use fill="var(--wave-5)" x="48" xlink:href="#gentle-wave" y="9"></use>
+                    <!-- Blue 2 -->
+                    <use fill="var(--wave-6)" x="48" xlink:href="#gentle-wave" y="11"></use>
+                    <!-- Blue 3 -->
+                    <use fill="var(--wave-7)" x="48" xlink:href="#gentle-wave" y="13"></use>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <style>
+        :root {
+            --wave-1-rgb: 110, 12, 29;
+            --wave-2-rgb: 56, 180, 238;
+            --wave-3-rgb: 196, 93, 255;
+        }
+    </style>
+
+</body>
+
+</html>
